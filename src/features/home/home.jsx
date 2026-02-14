@@ -3,6 +3,8 @@ import themesMAP from "../../../themes/themes";
 import { useState } from "react";
 import Landing from "./landing";
 import ImageSlider from "./imageSlider";
+import Services from "./Services";
+import Footer from "./footer";
 function HomePage() {
   const [dark, setDark] = useState(false);
   return (
@@ -18,6 +20,8 @@ function HomePage() {
       <Navbar dark={dark} setDark={setDark} />
       <Landing dark={dark} />
       <ImageSlider dark={dark} />
+      <Services dark={dark} />
+      <Footer dark={dark} />
     </div>
   );
 }

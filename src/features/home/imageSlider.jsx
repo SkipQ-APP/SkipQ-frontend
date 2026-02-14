@@ -14,14 +14,21 @@ export default function ImageSlider({ dark }) {
     <div
       className="p-6 w-full lg:max-w-7xl lg:mx-auto px-4 sm:px-6 lg:px-8"
       style={{
-        minHeight: "90vh",
+        // minHeight: "90vh",
         backgroundColor: dark
           ? themesMAP["light-main-bg"]
           : themesMAP["dark-main-bg"],
       }}
     >
       <div className="text-center w-full mb-7">
-        <h1 className="text-4xl">Explore SkipQ Features</h1>
+        <h1
+          className="text-4xl"
+          style={{
+            color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
+          }}
+        >
+          Explore SkipQ Features
+        </h1>
       </div>
       <Swiper
         // المميزات المطلوبة

@@ -14,9 +14,9 @@ export default function Landing({ dark }) {
       }}
     >
       <div className="grid lg:grid-cols-2 lx:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-6">
-        <div className="flex justify-center items-center  flex-col">
+        <div className="flex justify-center   flex-col">
           <h1
-            className="text-5xl font-bold md:text-6xl lg:text-7xl"
+            className="text-5xl font-bold md:text-6xl lg:text-6xl xl:text-7xl"
             style={{
               color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
             }}
@@ -24,10 +24,11 @@ export default function Landing({ dark }) {
             Skip the Queue, Save Your Time
           </h1>
           <p
-            className="text-2xl"
-            style={{
-              color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
-            }}
+            className="text-xl text-[#64748b]"
+            style={{ width: "70%" }}
+            // style={{
+            //   color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
+            // }}
           >
             Real-time crowd monitoring across branches. Check wait times before
             you go and make smarter choices about where and when to visit.
