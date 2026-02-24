@@ -1,9 +1,9 @@
-import Navbar from "./naveBar";
+import Navbar from "../../ui/naveBar";
 import themesMAP from "../../../themes/themes";
 import { useState } from "react";
 import Landing from "./landing";
 import ImageSlider from "./imageSlider";
-import Services from "./Services";
+import Services from "../../services/Services";
 import Footer from "./footer";
 import { motion } from "framer-motion";
 

@@ -1,13 +1,14 @@
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../themes/themes";
 import { motion } from "framer-motion";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
 export default function Services({ dark }) {
   // const [availbeServiec, setAvailbeServiec] = useState([]);
   // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   async function fetchData() {
-  //     const res = await fetch("http://10.215.67.77:5001/api/organizations");
+  //     const res = await fetch(`${baseUrl}/api/organizations`);
   //     const data = await res.json();
   //     setAvailbeServiec(data.data);
   //     console.log(data.data);

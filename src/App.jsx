@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
-import HomePage from "./features/home/home";
-import PageNotFound from "./features/pageNotFound/PageNotFound";
+import HomePage from "./features/homePage/home";
+import PageNotFound from "./ui/PageNotFound";
 // import Dashboard from "./features/dashboard/Dashboard";
 const App = () => {
   return (
