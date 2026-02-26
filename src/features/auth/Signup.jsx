@@ -1,5 +1,11 @@
+import ApplicationSubmitted from "./ApplicationSubmitted";
+
 function Signup() {
-  return <h1>this is the Signup</h1>;
+  return (
+    <div>
+      <ApplicationSubmitted dark={false} orgName="Lash" />
+    </div>
+  );
 }
 
 export default Signup;

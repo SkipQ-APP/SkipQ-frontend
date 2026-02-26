@@ -1,14 +1,16 @@
-import Navbar from "./naveBar";
+import Navbar from "../../ui/naveBar";
 import themesMAP from "../../../themes/themes";
 import { useState } from "react";
 import Landing from "./landing";
 import ImageSlider from "./imageSlider";
-import Services from "./Services";
+import Services from "../../services/Services";
 import Footer from "./footer";
 import { motion } from "framer-motion";
 
 function HomePage() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    return JSON.parse(localStorage.getItem("isDark") ?? false);
+  });
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
