@@ -225,11 +225,12 @@ function Card({ image, dark, name, desc, id }) {
         </p>
 
         <button
-          className="bg-blue-500 text-white px-4 py-2 mt-auto w-full 
-                     rounded hover:bg-blue-600 transition"
+          className=" text-white px-4 py-2 mt-auto w-full 
+                     rounded hover:bg-blue-800 transition"
           onClick={() => id}
+          style={{ backgroundColor: "rgb(65, 15, 199)" }}
         >
-          Buy Now
+          View Branches
         </button>
       </div>
     </div>

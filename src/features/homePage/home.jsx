@@ -8,7 +8,9 @@ import Footer from "./footer";
 import { motion } from "framer-motion";
 
 function HomePage() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    return JSON.parse(localStorage.getItem("isDark") ?? false);
+  });
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}

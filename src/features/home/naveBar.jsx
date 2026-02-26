@@ -3,8 +3,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import themesMAP from "../../themes/themes";
-import { NavLink } from "react-router-dom";
+import themesMAP from "../../../themes/themes";
 // import themesMAP from "../../../themes/themes";
 const navigation = [
   { name: "Home", href: "#" },
@@ -14,11 +13,8 @@ const navigation = [
 
 export default function Navbar({ dark, setDark }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // function handelerSetDark() {
-
-  // }
   return (
-    <header className="relative inset-x-0 top-0 z-50  ">
+    <header className="relative  inset-x-0 top-0 z-50  ">
       <nav className="flex items-center justify-between p-6 w-full lg:max-w-7xl lg:mx-auto px-4 sm:px-6 lg:px-8 ">
         {/* Logo */}
         <div className="flex lg:flex-1 gap-3 items-baseline">
@@ -75,14 +71,7 @@ export default function Navbar({ dark, setDark }) {
 
         {/* Login */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-          <button
-            onClick={() =>
-              setDark((prev) => {
-                localStorage.setItem("isDark", JSON.stringify(!prev));
-                return !prev;
-              })
-            }
-          >
+          <button onClick={() => setDark(!dark)}>
             <FontAwesomeIcon
               icon={dark ? faSun : faMoon}
               className="text-black"
@@ -92,29 +81,21 @@ export default function Navbar({ dark, setDark }) {
               }}
             />
           </button>
-          <p
+          <a
             href="#"
             className="font-semibold text-[22px]"
             style={{
               color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
             }}
           >
-            <NavLink to="/login" className=" rounded-xl shadow-xs  px-4 py-2.5">
-              Login
-            </NavLink>
-          </p>
-
+            Log in
+          </a>
           <button
             // style={{ backgroundColor: "rgb(65, 15, 199)" }}
             type="button"
             className={`text-white rounded-xl bg-brand box-border border border-transparent bg-blue-700 hover:bg-blue-600 focus:ring-blue-300 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none`}
           >
-            <NavLink
-              to="/signup"
-              className="text-white rounded-xl bg-blue-700 hover:bg-blue-600 shadow-xs font-medium text-sm px-4 py-2.5"
-            >
-              Sign up
-            </NavLink>
+            Sing up
           </button>
         </div>
       </nav>
@@ -153,37 +134,23 @@ export default function Navbar({ dark, setDark }) {
                 {item.name}
               </a>
             ))}
-            <button
-              onClick={() =>
-                setDark((prev) => {
-                  localStorage.setItem("isDark", JSON.stringify(!prev));
-                  return !prev;
-                })
-              }
-            >
+            <button onClick={() => setDark(!dark)}>
               <FontAwesomeIcon icon={dark ? faSun : faMoon} />
             </button>
-            <p
+            <a
               href="#"
-              className="font-semibold text-[22px]"
+              className="block mt-4"
               style={{
                 color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
               }}
             >
-              <NavLink to="/login" className=" rounded-xl shadow-xs  py-2.5">
-                Login
-              </NavLink>
-            </p>
+              Log in
+            </a>
             <button
               type="button"
-              className="mt-4 rounded-xl text-white bg-brand box-border border border-transparent    shadow-xs font-medium leading-5 rounded-base text-sm py-2.5 focus:outline-none"
+              className="mt-4 rounded-xl text-white bg-brand box-border border border-transparent bg-blue-500 hover:bg-blue-600 focus:ring-blue-300 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
             >
-              <NavLink
-                to="/signup"
-                className="text-white rounded-xl bg-blue-700  shadow-xs font-medium text-sm px-4 py-2.5"
-              >
-                Sign up
-              </NavLink>
+              Sing up
             </button>
           </div>
         </DialogPanel>
