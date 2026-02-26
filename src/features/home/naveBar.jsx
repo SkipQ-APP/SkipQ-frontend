@@ -88,9 +88,10 @@ export default function Navbar({ dark, setDark }) {
               color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
             }}
           >
-            Log in →
+            Log in
           </a>
           <button
+            style={{ backgroundColor: "rgb(65, 15, 199)" }}
             type="button"
             className={`text-white rounded-xl bg-brand box-border border border-transparent bg-blue-700 hover:bg-blue-600 focus:ring-blue-300 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none`}
           >
