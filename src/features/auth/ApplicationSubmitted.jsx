@@ -13,7 +13,7 @@ import { faHouse } from "@fortawesome/free-regular-svg-icons";
 import { NavLink } from "react-router-dom";
 
 export default function ApplicationSubmitted({
-  dark = false,
+  dark = true,
   orgName = "your organization",
 }) {
   const textColor = dark ? themesMAP["text-light"] : themesMAP["text-dark"];
@@ -48,7 +48,7 @@ export default function ApplicationSubmitted({
   return (
     <div
       style={{ background: bgColor, color: textColor, minHeight: "100vh" }}
-      className="flex items-center justify-center px-4 py-10"
+      className="flex items-center justify-center px-4 py-10 rounded-xl"
     >
       <motion.div
         className="w-full max-w-md shadow-lg shadow-gray-400 p-5 rounded-xl"
