@@ -12,7 +12,7 @@ import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import { motion } from "framer-motion";
 import { faSun } from "@fortawesome/free-regular-svg-icons";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
-
+import useAuth from "../../contexts/useAuth";
 export default function Login() {
   const [email, setEmail] = useState("");
 
@@ -29,7 +29,7 @@ export default function Login() {
   const [dark, setDark] = useState(() => {
     return JSON.parse(localStorage.getItem("isDark") ?? false);
   });
-
+const {login} = useAuth();
   // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -39,28 +39,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5001/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          account_email: email,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
-      }
-
-      const token = data.data.token;
-
-      localStorage.setItem("token", token);
-
-      // navigate("/");
+      await login(email, password);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {

@@ -110,7 +110,7 @@ export default function Navbar({ dark, setDark }) {
             className={`text-white rounded-xl bg-brand box-border border border-transparent bg-blue-700 hover:bg-blue-600 focus:ring-blue-300 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none`}
           >
             <NavLink
-              to="/signup"
+              to="/registration-guidelines"
               className="text-white rounded-xl bg-blue-700 hover:bg-blue-600 shadow-xs font-medium text-sm px-4 py-2.5"
             >
               Sign up
@@ -179,7 +179,7 @@ export default function Navbar({ dark, setDark }) {
               className="mt-4 rounded-xl text-white bg-brand box-border border border-transparent    shadow-xs font-medium leading-5 rounded-base text-sm py-2.5 focus:outline-none"
             >
               <NavLink
-                to="/signup"
+                to="/registration-guidelines"
                 className="text-white rounded-xl bg-blue-700  shadow-xs font-medium text-sm px-4 py-2.5"
               >
                 Sign up
