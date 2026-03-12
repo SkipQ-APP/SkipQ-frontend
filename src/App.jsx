@@ -1,28 +1,40 @@
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+
+import HomePage from "./features/home/HomePage";
+import HomeContent from "./features/home/HomeContent";
+import CivilRegistry from "./features/civil-registry/CivilRegistry";
+import Banks from "./features/banks/Banks";
 import Login from "./features/auth/Login";
 import Signup from "./features/auth/Signup";
-import HomePage from "./features/homePage/home";
-import PageNotFound from "./ui/PageNotFound";
-import { AuthProvider } from "./contexts/AuthContext";
 import RegesterationGuidelines from "./features/auth/RegesterationGuidelines";
-// import Dashboard from "./features/dashboard/Dashboard";
-const App = () => {
+import PageNotFound from "./ui/PageNotFound";
+import BranchDetails from "./features/civil-registry/BranchDetails";
+import ScrollToTop from "./ui/ScrollToTop";
+function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Routes>
+          <Route path="/" element={<HomePage />}>
+            <Route index element={<HomeContent />} />
+            <Route path="civil-registry" element={<CivilRegistry />} />
+            <Route path="civil-registry/:id" element={<BranchDetails />} />
+            <Route path="banks" element={<Banks />} />
+          </Route>
 
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/registration-guidelines" element={<RegesterationGuidelines />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/registration-guidelines"
+            element={<RegesterationGuidelines />}
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
       </AuthProvider>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

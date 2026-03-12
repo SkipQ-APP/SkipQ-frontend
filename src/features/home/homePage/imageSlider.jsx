@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
 
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 export default function ImageSlider({ dark }) {
   return (
