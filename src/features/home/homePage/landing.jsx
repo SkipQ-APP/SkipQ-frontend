@@ -1,4 +1,4 @@
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 export default function Landing({ dark }) {
   // p-6 w-full lg:max-w-7xl lg:mx-auto px-4 sm:px-6 lg:px-8

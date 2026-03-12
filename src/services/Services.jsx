@@ -1,6 +1,6 @@
 import themesMAP from "../../themes/themes";
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 // const baseUrl = import.meta.env.VITE_BASE_URL;
 export default function Services({ dark }) {
   // const [availbeServiec, setAvailbeServiec] = useState([]);
@@ -17,6 +17,7 @@ export default function Services({ dark }) {
 
   //   fetchData();
   // }, []);
+  const navigate = useNavigate();
   let availbeServiec = [
     {
       service_id: 11,
@@ -153,6 +154,8 @@ export default function Services({ dark }) {
                 dark={dark}
                 name={serv.org_name}
                 desc={serv.org_description}
+                navigate={navigate}
+                path={serv.service_id === 7 ? "civil-registry" : "banks"}
               />
             </motion.div>
           ))}
@@ -195,7 +198,7 @@ export default function Services({ dark }) {
 //   );
 // }
 
-function Card({ image, dark, name, desc, id }) {
+function Card({ image, dark, name, desc, id, path, navigate }) {
   return (
     <div
       className="rounded-xl shadow-xl border-2 flex flex-col h-full"
@@ -203,6 +206,7 @@ function Card({ image, dark, name, desc, id }) {
         borderColor: "#b1b1b1",
         backgroundColor: dark ? "#0f172a" : themesMAP["dark-main-bg"],
       }}
+      onClick={() => navigate(`${path}`)}
     >
       <div className="rounded-xl" style={{ minHeight: "10vh" }}>
         <img

@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import themesMAP from "../../../themes/themes";
+// import themesMAP from "../../../themes/themes";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
+import themesMAP from "../../themes/themes";
 
 export default function Footer({ dark }) {
   return (

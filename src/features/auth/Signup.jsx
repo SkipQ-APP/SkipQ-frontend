@@ -10,6 +10,9 @@ import {
 } from "lucide-react";
 import ApplicationSubmitted from "./ApplicationSubmitted";
 import useAuth from "../../contexts/useAuth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-regular-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function CreateOrganizationForm() {
   const [formData, setFormData] = useState({
@@ -96,11 +99,11 @@ export default function CreateOrganizationForm() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#f0f4f9]">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-lg p-8 md:p-12">
-        {submitted ? (
-          <ApplicationSubmitted />
-        ) : (
-          <>
+      {submitted ? (
+        <ApplicationSubmitted />
+      ) : (
+        <>
+          <div className="w-full max-w-2xl bg-white rounded-3xl shadow-lg p-8 md:p-12">
             <div className="text-center mb-10">
               <div className="flex items-center justify-center gap-6 mb-6">
                 <div className="p-4 rounded-full bg-[#6089da]">
@@ -143,6 +146,23 @@ export default function CreateOrganizationForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label
+                    htmlFor="organizationName"
+                    className="block text-sm font-semibold  mb-1"
+                  >
+                    Organization Name
+                  </label>
+                  <input
+                    type="text"
+                    name="organizationName"
+                    value={formData.organizationName}
+                    onChange={handleInputChange}
+                    placeholder="Organization Name"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#6089da] focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
                     htmlFor="abbreviation"
                     className="block text-sm font-semibold  mb-1"
                   >
@@ -155,23 +175,6 @@ export default function CreateOrganizationForm() {
                     onChange={handleInputChange}
                     placeholder="Abbreviation (E.G, WHO)"
                     maxLength={10}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#6089da] focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="organizationName"
-                    className="block text-sm font-semibold  mb-1"
-                  >
-                    Organization Name
-                  </label>
-                  <input
-                    type="text"
-                    name="organizationName"
-                    value={formData.organizationName}
-                    onChange={handleInputChange}
-                    placeholder="Organization Name"
                     required
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#6089da] focus:outline-none"
                   />
@@ -313,17 +316,22 @@ export default function CreateOrganizationForm() {
               </button>
             </form>
 
-            <div className="mt-8">
+            <div className="mt-8 text-center">
               <Link
                 to="/"
                 className="text-gray-600 hover:text-gray-900 text-sm"
               >
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  className="text-black me-2"
+                  size="lg"
+                />
                 Back to Home
               </Link>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

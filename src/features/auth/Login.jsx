@@ -13,6 +13,8 @@ import { motion } from "framer-motion";
 import { faSun } from "@fortawesome/free-regular-svg-icons";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import useAuth from "../../contexts/useAuth";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-regular-svg-icons";
 export default function Login() {
   const [email, setEmail] = useState("");
 
@@ -29,7 +31,7 @@ export default function Login() {
   const [dark, setDark] = useState(() => {
     return JSON.parse(localStorage.getItem("isDark") ?? false);
   });
-const {login} = useAuth();
+  const { login } = useAuth();
   // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -91,7 +93,7 @@ shadow-lg rounded-xl
               "
             >
               <FontAwesomeIcon
-                icon={faArrowAltCircleLeft}
+                icon={faHouse}
                 className="text-black"
                 size="lg"
                 style={{
@@ -102,25 +104,6 @@ shadow-lg rounded-xl
               />
               Back to Home
             </NavLink>
-            <button
-              onClick={() =>
-                setDark((prev) => {
-                  localStorage.setItem("isDark", JSON.stringify(!prev));
-                  return !prev;
-                })
-              }
-            >
-              <FontAwesomeIcon
-                icon={dark ? faSun : faMoon}
-                className="text-black"
-                size="lg"
-                style={{
-                  color: dark
-                    ? themesMAP["text-light"]
-                    : themesMAP["text-dark"],
-                }}
-              />
-            </button>
           </div>
 
           <div className="mb-6">
