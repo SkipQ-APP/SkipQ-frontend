@@ -1,18 +1,19 @@
 import {Link} from "react-router-dom"
-function ATMCard({ atm, onViewDetails }) {
+import BillBadge from "./BillBadge";
+import ServiceBadge from "./ServiceBadge";
 
-    const ATM_DATA = {
-  name: "ATM Details",
-  bankName: "Banque Misr",
-  location: "Cairo Downtown, Egypt",
-  lat: 30.0444,
-  lng: 31.2357,
-  active: true,         
-  queueCount: 4,        
-  denominations: [200, 100, 50, 20],  
+const ATM_DATA = {
+name: "ATM Details",
+bankName: "Banque Misr",
+location: "Cairo Downtown, Egypt",
+lat: 30.0444,
+lng: 31.2357,
+active: true,         
+queueCount: 4,        
+denominations: [200, 100, 50, 20],  
 };
+function ATMCard({ atm }) {
   return (
-    <Link to={`/banks/${atm.bankName}/atms/${atm.id}`}>
     <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-200">
       {/* Header */}
       <div className="mb-4">
@@ -26,7 +27,7 @@ function ATMCard({ atm, onViewDetails }) {
         </div>
         <p className="text-slate-400 text-xs mt-0.5">{atm.distance} away</p>
       </div>
- 
+
       {/* Bills & Services */}
       <div className="flex gap-8 mb-5">
         {/* Bills */}
@@ -39,12 +40,12 @@ function ATMCard({ atm, onViewDetails }) {
             <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Bills</span>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {atm.bills.map((b) => (
+            {(atm.bills || []).map((b) => (
               <BillBadge key={b} amount={b} />
             ))}
           </div>
         </div>
- 
+
         {/* Services */}
         <div>
           <div className="flex items-center gap-1.5 mb-2">
@@ -55,23 +56,22 @@ function ATMCard({ atm, onViewDetails }) {
             <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Services</span>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {atm.services.map((s) => (
+            {(atm.services || []).map((s) => (
               <ServiceBadge key={s} label={s} />
             ))}
           </div>
         </div>
       </div>
- 
+
       {/* CTA Button */}
+      <Link to={`/banks/${atm.bankName}/atms/${atm.id}`}>
       <button
-        onClick={() => onViewDetails?.(atm)}
         className="w-full py-3 bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-150"
       >
         View Details &amp; Location
       </button>
+        </Link>
     </div>
-    </Link>
   );
 }
-
 export default ATMCard;

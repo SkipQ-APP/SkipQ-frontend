@@ -4,7 +4,7 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import SearchBar from "./components/SearchBar";
 import BranchList from "./components/BranchList";
-import Pagination from "./components/Pagination";
+import Pagination from "../../ui/Pagination";
 import LocationPermissionModal from "./components/LocationPermissionModal";
 
 const BASE_URL = "http://localhost:8000";
