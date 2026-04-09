@@ -42,10 +42,9 @@ const ATMS = [
   },
 ];
 
-
 export default function ATMList({ bankName = "National Bank of Egypt" }) {
   const [distance, setDistance] = useState(2000);
-  const [sort, setSort]         = useState("nearest");
+  const [sort, setSort] = useState("nearest");
 
   const filtered = useMemo(() => {
     const list = ATMS.filter((a) => a.distanceM <= distance);
@@ -61,13 +60,14 @@ export default function ATMList({ bankName = "National Bank of Egypt" }) {
 
         {/* Page Header */}
         <div className="flex items-center gap-2 mb-6">
-          <button className="text-slate-400 hover:text-blue-600 transition-colors">
+          
+          <button className="text-slate-400 hover:text-[rgb(65,15,199)] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
           <h1 className="text-lg font-bold text-slate-800">
-            ATM Machines –&nbsp;<span className="text-blue-600">{bankName}</span>
+            ATM Machines –&nbsp;<span className="text-[rgb(65,15,199)]">{bankName}</span>
           </h1>
         </div>
 
@@ -82,21 +82,17 @@ export default function ATMList({ bankName = "National Bank of Egypt" }) {
           <SortDropdown value={sort} onChange={setSort} />
         </div>
 
-        
         {filtered.length > 0 ? (
           filtered.map((atm) => (
-            <ATMCard
-              key={atm.id}
-              atm={atm}
-            />
+            <ATMCard key={atm.id} atm={atm} />
           ))
         ) : (
           <div className="text-center py-20 text-slate-400 text-sm">
             No ATMs found within {distance}m.
           </div>
         )}
-      </div>
 
+      </div>
     </div>
   );
 }

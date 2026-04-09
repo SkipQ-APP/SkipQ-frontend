@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
- 
+
 // Fix Leaflet default icon broken in bundlers
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -10,10 +10,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
- 
-// ─────────────────────────────────────────────
-// Reusable: Status Badge
-// ─────────────────────────────────────────────
+
 function StatusBadge({ active }) {
   return (
     <div className="flex items-center gap-2">
@@ -24,41 +21,32 @@ function StatusBadge({ active }) {
     </div>
   );
 }
- 
-// ─────────────────────────────────────────────
-// Reusable: Queue Status Card
-// ─────────────────────────────────────────────
+
 function QueueStatus({ count }) {
   return (
-    <div className="flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8">
+    <div className="flex items-center gap-3 bg-[rgb(65,15,199)]/10 border border-[rgb(65,15,199)]/20 rounded-xl px-4 py-3">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgb(65,15,199)" strokeWidth="1.8">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
       <div>
-        <p className="text-[11px] text-blue-400 font-semibold uppercase tracking-wider">Queue Status</p>
-        <p className="text-blue-700 font-bold text-base leading-tight">{count} people waiting</p>
+        <p className="text-[11px] text-[rgb(65,15,199)]/70 font-semibold uppercase tracking-wider">Queue Status</p>
+        <p className="text-[rgb(65,15,199)] font-bold text-base leading-tight">{count} people waiting</p>
       </div>
     </div>
   );
 }
- 
-// ─────────────────────────────────────────────
-// Reusable: Denomination Badge
-// ─────────────────────────────────────────────
+
 function DenominationBadge({ amount, currency = "EGP" }) {
   return (
-    <div className="flex items-center justify-center border border-slate-200 rounded-xl py-3 text-sm font-semibold text-slate-700 bg-white hover:border-blue-300 hover:text-blue-600 transition-colors cursor-default">
+    <div className="flex items-center justify-center border border-slate-200 rounded-xl py-3 text-sm font-semibold text-slate-700 bg-white hover:border-[rgb(65,15,199)]/50 hover:text-[rgb(65,15,199)] transition-colors cursor-default">
       {amount} {currency}
     </div>
   );
 }
- 
-// ─────────────────────────────────────────────
-// Reusable: ATM Map (react-leaflet)
-// ─────────────────────────────────────────────
-function ATMMap({ lat, lng, label}) {
+
+function ATMMap({ lat, lng, label }) {
   return (
     <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm" style={{ height: 340 }}>
       <MapContainer
@@ -76,24 +64,18 @@ function ATMMap({ lat, lng, label}) {
           <Popup>{label}</Popup>
         </Marker>
       </MapContainer>
- 
-      {/* Floating action buttons over map */}
-     
     </div>
   );
 }
- 
-// ─────────────────────────────────────────────
-// Reusable: Withdraw Form
-// ─────────────────────────────────────────────
+
 function WithdrawForm({ onSubmit }) {
-  const [amount, setAmount]   = useState("");
+  const [amount, setAmount] = useState("");
   const [showAmt, setShowAmt] = useState(false);
- 
+
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mt-12">
       <h2 className="text-lg font-bold text-slate-800 mb-4">Withdraw Cash</h2>
- 
+
       <label className="block text-sm text-slate-500 mb-2">Amount (EGP)</label>
       <div className="relative mb-4">
         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">$</span>
@@ -103,12 +85,12 @@ function WithdrawForm({ onSubmit }) {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           className="w-full pl-9 pr-11 py-3 border border-slate-200 rounded-xl text-slate-700 text-sm
-                     placeholder-slate-300 outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-50 transition-all"
+                     placeholder-slate-300 outline-none focus:border-[rgb(65,15,199)] focus:ring-4 focus:ring-[rgb(65,15,199)]/10 transition-all"
         />
         <button
           type="button"
           onClick={() => setShowAmt(!showAmt)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-500 transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[rgb(65,15,199)] transition-colors"
         >
           {showAmt ? (
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -122,20 +104,17 @@ function WithdrawForm({ onSubmit }) {
           )}
         </button>
       </div>
- 
+
       <button
         onClick={() => amount && onSubmit?.(amount)}
-        className="w-full py-3.5 bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-150"
+        className="w-full py-3.5 bg-[rgb(65,15,199)] hover:bg-[rgb(85,35,219)] active:bg-[rgb(45,5,179)] active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-150"
       >
         Proceed to Withdrawal
       </button>
     </div>
   );
 }
- 
-// ─────────────────────────────────────────────
-// Sample Data  (replace with your fetched data)
-// ─────────────────────────────────────────────
+
 const ATM_DATA = {
   name: "ATM Details",
   bankName: "Banque Misr",
@@ -146,18 +125,15 @@ const ATM_DATA = {
   queueCount: 4,
   denominations: [200, 100, 50, 20],
 };
- 
-// ─────────────────────────────────────────────
-// Main Page
-// ─────────────────────────────────────────────
+
 export default function ATMDetails({ atm = ATM_DATA }) {
   return (
     <div className="min-h-screen bg-slate-100 px-4 py-10">
       <div className="max-w-5xl mx-auto">
- 
+
         {/* Header */}
         <div className="flex items-start gap-3 mb-8">
-          <button className="mt-1 text-slate-400 hover:text-blue-600 transition-colors">
+          <button className="mt-1 text-slate-400 hover:text-[rgb(65,15,199)] transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M15 18l-6-6 6-6" />
             </svg>
@@ -167,31 +143,26 @@ export default function ATMDetails({ atm = ATM_DATA }) {
             <p className="text-slate-400 text-sm mt-0.5">{atm.bankName}</p>
           </div>
         </div>
- 
+
         {/* Main Layout */}
         <div className="flex flex-col lg:flex-row gap-5">
- 
-          {/* Left column: Map with Withdraw Card overlapping bottom */}
+
+          {/* Left column */}
           <div className="flex-1">
-            {/* Wrapper that allows the form card to sit on top of the map */}
             <div className="relative">
               <ATMMap
                 lat={atm.lat}
                 lng={atm.lng}
                 label={atm.location}
-                onDirections={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${atm.lat},${atm.lng}`)}
-                onCall={() => alert("Calling ATM support…")}
               />
- 
-              {/* Withdraw form overlapping the bottom of the map */}
               <div className="relative -mt-6 mx-4 z-[1001]">
                 <WithdrawForm onSubmit={(amt) => alert(`Withdrawing ${amt} EGP`)} />
               </div>
             </div>
           </div>
- 
-          {/* Right column: Info Panel */}
-          <div className="w-full lg:w-72 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-5 self-start ">
+
+          {/* Right column */}
+          <div className="w-full lg:w-72 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-5 self-start">
             <StatusBadge active={atm.active} />
             <QueueStatus count={atm.queueCount} />
             <div>
@@ -203,7 +174,7 @@ export default function ATMDetails({ atm = ATM_DATA }) {
               </div>
             </div>
           </div>
- 
+
         </div>
       </div>
     </div>

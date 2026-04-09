@@ -5,19 +5,19 @@ function BankCard({ bank, onClick }) {
     <Link
       to={`/banks/${bank.org_name}/atms`}
       onClick={() => onClick?.(bank)}
-      className="group relative bg-white border border-blue-100 rounded-2xl cursor-pointer overflow-hidden
+      className="w-[90%] mx-auto group relative bg-white border border-[rgb(65,15,199)]/20 rounded-2xl cursor-pointer overflow-hidden
                  transition-all duration-300 ease-out
-                 hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl hover:shadow-blue-100 hover:border-blue-300"
+                 hover:-translate-y-1.5 hover:scale-[1.015] hover:shadow-xl hover:shadow-[rgb(65,15,199)]/20 hover:border-[rgb(65,15,199)]/50"
     >
       {/* Hover glow overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[rgb(65,15,199)]/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative flex items-center gap-4 p-5">
         {/* Icon */}
         <div
           className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center
-                        bg-blue-100 text-blue-600
-                        group-hover:bg-blue-600 group-hover:text-white
+                        bg-[rgb(65,15,199)]/15 text-[rgb(65,15,199)]
+                        group-hover:bg-[rgb(65,15,199)] group-hover:text-white
                         transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110"
         >
           <svg
@@ -59,7 +59,7 @@ function BankCard({ bank, onClick }) {
         </div>
 
         {/* Arrow */}
-        <div className="text-slate-200 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0">
+        <div className="text-slate-200 group-hover:text-[rgb(65,15,199)] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0">
           <svg
             width="18"
             height="18"

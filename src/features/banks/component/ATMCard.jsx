@@ -1,20 +1,10 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import BillBadge from "./BillBadge";
 import ServiceBadge from "./ServiceBadge";
 
-const ATM_DATA = {
-name: "ATM Details",
-bankName: "Banque Misr",
-location: "Cairo Downtown, Egypt",
-lat: 30.0444,
-lng: 31.2357,
-active: true,         
-queueCount: 4,        
-denominations: [200, 100, 50, 20],  
-};
 function ATMCard({ atm }) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-200">
+    <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-[rgb(65,15,199)]/40 transition-all duration-200">
       {/* Header */}
       <div className="mb-4">
         <h2 className="text-base font-bold text-slate-800">{atm.name}</h2>
@@ -65,13 +55,14 @@ function ATMCard({ atm }) {
 
       {/* CTA Button */}
       <Link to={`/banks/${atm.bankName}/atms/${atm.id}`}>
-      <button
-        className="w-full py-3 bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-150"
-      >
-        View Details &amp; Location
-      </button>
-        </Link>
+        <button
+          className="w-full py-3 bg-[rgb(65,15,199)] hover:bg-[rgb(85,35,219)] active:bg-[rgb(45,5,179)] active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-150"
+        >
+          View Details &amp; Location
+        </button>
+      </Link>
     </div>
   );
 }
+
 export default ATMCard;
