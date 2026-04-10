@@ -10,11 +10,11 @@ function HomeContent() {
 
   return (
     <>
-      <Navbar dark={dark} setDark={setDark} />
+      {/* <Navbar dark={dark} setDark={setDark} /> */}
       <Landing dark={dark} />
       <ImageSlider dark={dark} />
       <Services dark={dark} />
-      <Footer dark={dark} />
+      {/* <Footer dark={dark} /> */}
     </>
   );
 }

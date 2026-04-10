@@ -20,34 +20,26 @@ function BranchCard({ branch, index, dark }) {
       whileHover={{ scale: 1.015, transition: { duration: 0.2 } }}
       className={`rounded-2xl border p-5 shadow-sm mb-4 ${cardBg}`}
     >
-      <div className="mb-3">
-        <h2 className={`text-lg font-bold ${textColor}`}>
-          {branch.branch_name}
-        </h2>
-        <div className="flex items-center gap-2 mt-1">
-          <FontAwesomeIcon
-            icon={faLocationDot}
-            size="sm"
-            style={{ color: dark ? "white" : "rgb(65,15,199)" }}
-          />
-          <span className={`text-sm ${subText}`}>{branch.branch_code}</span>
-        </div>
-        <span className={`text-xs mt-1 block ${subText}`}>
-          {simulatedDistance} km away
-        </span>
-      </div>
-
-      <div
-        className={`border-t my-3 ${dark ? "border-gray-700" : "border-gray-100"}`}
-      />
-
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-        <div className="flex items-center justify-between w-full">
-          <span
-            className={`text-xs font-semibold uppercase tracking-wider ${subText}`}
-          >
-            Status
+      <div className="mb-3 flex justify-between flex-wrap">
+        <div>
+          {" "}
+          <h2 className={`text-lg font-bold ${textColor}`}>
+            {branch.branch_name}
+          </h2>
+          <div className="flex items-center gap-2 mt-1">
+            <FontAwesomeIcon
+              icon={faLocationDot}
+              size="sm"
+              style={{ color: dark ? "white" : "rgb(65,15,199)" }}
+            />
+            <span className={`text-sm ${subText}`}>{branch.branch_code}</span>
+          </div>
+          <span className={`text-xs mt-1 ms-1 block ${subText}`}>
+            {simulatedDistance} km away
           </span>
+        </div>
+        <div>
+          {" "}
           {branch.isActive ? (
             <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full border border-green-200">
               Active
@@ -59,6 +51,29 @@ function BranchCard({ branch, index, dark }) {
           )}
         </div>
       </div>
+
+      <div
+        className={`border-t my-3 ${dark ? "border-gray-700" : "border-gray-100"}`}
+      />
+
+      {/* <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <div className="flex items-center justify-between w-full">
+          {/* <span
+            className={`text-xs font-semibold uppercase tracking-wider ${subText}`}
+          >
+            Status
+          </span> */}
+      {/* {branch.isActive ? (
+            <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full border border-green-200">
+              Active
+            </span>
+          ) : (
+            <span className="bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full border border-red-200">
+              Inactive
+            </span>
+          )} */}
+      {/* </div>
+      </div> */}
 
       <motion.button
         whileTap={{ scale: 0.97 }}

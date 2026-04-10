@@ -46,10 +46,10 @@ function BranchInfoBox({ branch, dark, is_Active }) {
           <span className={`text-sm ${sub}`}>9:00 AM – 5:00 PM</span>
         </div>
 
-        <div className="flex items-center gap-2 ms-1">
+        {/* <div className="flex items-center gap-2 ms-1">
           <Users className={`w-4 h-4 flex-shrink-0 ${sub}`} />
           <span className={`text-sm ${sub}`}>Average wait: 15–20 minutes</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
