@@ -37,13 +37,9 @@ function CivilRegistry() {
   const [maxDistance, setMaxDistance] = useState(null);
 
   const [userLocation, setUserLocation] = useState(null);
-  // ← المودال يفضل مفتوح طول ما بنستنى الـ GPS
   const [showLocationModal, setShowLocationModal] = useState(true);
   const [locationLoading, setLocationLoading] = useState(false);
 
-  // ---------------------------------------------------------------------------
-  // Fetch من json-server
-  // ---------------------------------------------------------------------------
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -79,7 +75,6 @@ function CivilRegistry() {
       return;
     }
 
-    // ← خلي المودال مفتوح وبس غير حالته لـ loading
     setLocationLoading(true);
 
     navigator.geolocation.getCurrentPosition(
@@ -89,12 +84,11 @@ function CivilRegistry() {
           lng: pos.coords.longitude,
         });
         setLocationLoading(false);
-        setShowLocationModal(false); // ← اتقفل بعد ما جاب اللوكيشن
+        setShowLocationModal(false);
       },
       () => {
-        // رفض أو timeout
         setLocationLoading(false);
-        setShowLocationModal(false); // ← اتقفل حتى لو فشل
+        setShowLocationModal(false);
       },
       { timeout: 10000, maximumAge: 60000, enableHighAccuracy: true },
     );
@@ -104,9 +98,6 @@ function CivilRegistry() {
     setShowLocationModal(false);
   }, []);
 
-  // ---------------------------------------------------------------------------
-  // Enrich branches بالمسافة
-  // ---------------------------------------------------------------------------
   const enrichedBranches = useMemo(() => {
     return branches.map((branch) => {
       const loc = locations.find((l) => l.location_id === branch.location_id);
@@ -271,222 +262,3 @@ function CivilRegistry() {
 }
 
 export default CivilRegistry;
-
-// ***********************************************************************
-// عشان لما نغير و نستعمل ال  api
-
-// import { useOutletContext, useNavigate } from "react-router-dom";
-// import { useState, useEffect, useCallback, useMemo } from "react";
-// import axios from "axios";
-// import { motion, AnimatePresence } from "framer-motion";
-// import SearchBar from "./components/SearchBar";
-// import BranchList from "./components/BranchList";
-// import Pagination from "./components/Pagination";
-// import LocationPermissionModal from "./components/LocationPermissionModal";
-
-// // ← غير دول لما تشيل json-server
-// const BASE_URL = "http://localhost:5001/api";
-// const ORG_ID = 2;
-// const PAGE_SIZE = 10;
-
-// // ← مش محتاجها خالص — السيرفر بيحسبها
-// // function getDistanceKm(...) { ... }  // احذفها
-
-// function CivilRegistry() {
-//   const { dark } = useOutletContext();
-//   const navigate = useNavigate();
-
-//   const [branches, setBranches] = useState([]);
-//   const [totalCount, setTotalCount] = useState(0);  // ← جديد: السيرفر بيبعت التوتال
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(null);
-
-//   const [searchName, setSearchName] = useState("");
-//   const [sortOrder, setSortOrder] = useState("asc");
-//   const [currentPage, setCurrentPage] = useState(1);
-
-//   const [userLocation, setUserLocation] = useState(null);
-//   const [showLocationModal, setShowLocationModal] = useState(true);
-//   const [locationLoading, setLocationLoading] = useState(false);
-
-//   // ---------------------------------------------------------------------------
-//   // ← الفرق الكبير: fetchBranches بتاخد lat/lng وبتبعتهم للسيرفر
-//   // مش محتاج تجيب locations منفصلة — السيرفر بيعمل كل حاجة
-//   // ---------------------------------------------------------------------------
-//   const fetchBranches = useCallback(async (lat, lng, page = 1) => {
-//     try {
-//       setLoading(true);
-//       setError(null);
-
-//       const res = await axios.get(
-//         `${BASE_URL}/organizations/${ORG_ID}/branches/nearby`,
-//         {
-//           params: {
-//             latitude: lat,
-//             longitude: lng,
-//             page,
-//             limit: PAGE_SIZE,
-//           },
-//         }
-//       );
-
-//       // ← شكل الـ response: { status, message, data: { branches: [...] } }
-//       const { branches, total } = res.data.data;
-//       setBranches(branches);
-//       setTotalCount(total || branches.length);
-
-//     } catch (err) {
-//       setError("Failed to load branches.");
-//       console.error(err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   }, []);
-
-//   // ---------------------------------------------------------------------------
-//   // Location handlers — نفس اللي عندك بالظبط
-//   // ---------------------------------------------------------------------------
-//   const handleAllowLocation = useCallback(() => {
-//     if (!navigator.geolocation) {
-//       setShowLocationModal(false);
-//       return;
-//     }
-//     setLocationLoading(true);
-//     navigator.geolocation.getCurrentPosition(
-//       (pos) => {
-//         const lat = pos.coords.latitude;
-//         const lng = pos.coords.longitude;
-//         setUserLocation({ lat, lng });
-//         setLocationLoading(false);
-//         setShowLocationModal(false);
-//         fetchBranches(lat, lng, 1); // ← fetch بعد ما ياخد اللوكيشن
-//       },
-//       () => {
-//         setLocationLoading(false);
-//         setShowLocationModal(false);
-//         // لو رفض، fetch بـ Cairo default
-//         fetchBranches(30.0444, 31.2357, 1);
-//       },
-//       { timeout: 10000, maximumAge: 60000, enableHighAccuracy: true }
-//     );
-//   }, [fetchBranches]);
-
-//   const handleSkipLocation = useCallback(() => {
-//     setShowLocationModal(false);
-//     fetchBranches(30.0444, 31.2357, 1); // ← fetch بـ default
-//   }, [fetchBranches]);
-
-//   // Re-fetch لما يتغير الـ page
-//   useEffect(() => {
-//     if (!showLocationModal) {
-//       const lat = userLocation?.lat ?? 30.0444;
-//       const lng = userLocation?.lng ?? 31.2357;
-//       fetchBranches(lat, lng, currentPage);
-//     }
-//   }, [currentPage]);
-
-//   // ---------------------------------------------------------------------------
-//   // ← مش محتاج enrichedBranches ولا Haversine
-//   // السيرفر بيبعت distance جاهزة في كل branch
-//   // ---------------------------------------------------------------------------
-//   const filtered = useMemo(() => {
-//     return branches.filter((branch) =>
-//       branch.branch_name.toLowerCase().includes(searchName.toLowerCase())
-//     );
-//   }, [branches, searchName]);
-
-//   const sorted = useMemo(() => {
-//     return [...filtered].sort((a, b) => {
-//       if (a.distance == null && b.distance == null) return 0;
-//       if (a.distance == null) return 1;
-//       if (b.distance == null) return -1;
-//       return sortOrder === "asc"
-//         ? a.distance - b.distance
-//         : b.distance - a.distance;
-//     });
-//   }, [filtered, sortOrder]);
-
-//   // ← Pagination: السيرفر بيعمله، مش احنا
-//   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
-
-//   useEffect(() => {
-//     setCurrentPage(1);
-//   }, [searchName, sortOrder]);
-
-//   const pageBg = dark ? "bg-gray-950" : "bg-gray-50";
-//   const textColor = dark ? "text-white" : "text-gray-900";
-//   const subText = dark ? "text-gray-400" : "text-gray-500";
-
-//   return (
-//     <>
-//       <LocationPermissionModal
-//         dark={dark}
-//         visible={showLocationModal}
-//         onAllow={handleAllowLocation}
-//         onSkip={handleSkipLocation}
-//         locationLoading={locationLoading}
-//       />
-
-//       <div className={`min-h-screen px-4 py-8 md:px-10 lg:px-20 ${pageBg} transition-colors duration-300`}>
-//         <motion.button
-//           initial={{ opacity: 0, x: -20 }}
-//           animate={{ opacity: 1, x: 0 }}
-//           onClick={() => navigate(-1)}
-//           className={`flex items-center gap-2 text-sm font-medium mb-6 hover:opacity-70 transition ${textColor}`}
-//         >
-//           ← Back
-//         </motion.button>
-
-//         <motion.div
-//           initial={{ opacity: 0, y: -20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           className="mb-6"
-//         >
-//           <h1 className={`text-2xl md:text-3xl font-extrabold tracking-tight ${textColor}`}>
-//             Civil Registry — Branches
-//           </h1>
-//           <div className="flex items-center gap-3 mt-1 flex-wrap">
-//             <p className={`text-sm ${subText}`}>
-//               {sorted.length} branch{sorted.length !== 1 ? "es" : ""} found
-//             </p>
-//             {userLocation && (
-//               <motion.span
-//                 initial={{ opacity: 0, scale: 0.8 }}
-//                 animate={{ opacity: 1, scale: 1 }}
-//                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-[rgb(65,15,199)]/10 text-[rgb(65,15,199)]"
-//               >
-//                 <span className="w-1.5 h-1.5 rounded-full bg-[rgb(65,15,199)]" />
-//                 Sorted by your location
-//               </motion.span>
-//             )}
-//           </div>
-//         </motion.div>
-
-//         <SearchBar
-//           dark={dark}
-//           searchName={searchName}
-//           setSearchName={setSearchName}
-//           sortOrder={sortOrder}
-//           setSortOrder={setSortOrder}
-//         />
-
-//         {error && (
-//           <div className="bg-red-100 border border-red-300 text-red-700 rounded-xl px-4 py-3 mb-4 text-sm">
-//             {error}
-//           </div>
-//         )}
-
-//         {/* ← sorted مش paginated — لأن السيرفر بيعمل الـ pagination */}
-// //         <BranchList branches={sorted} dark={dark} loading={loading} />
-
-// //         <Pagination
-// //           currentPage={currentPage}
-// //           totalPages={totalPages}
-// //           onPageChange={setCurrentPage}
-// //           dark={dark}
-// //         />
-// //       </div>
-// //     </>
-// //   );
-// // }
-// // export default CivilRegistry;

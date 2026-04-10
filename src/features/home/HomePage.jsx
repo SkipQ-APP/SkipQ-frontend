@@ -26,7 +26,9 @@ function HomePage() {
           minHeight: "100vh",
         }}
       >
+        <Navbar dark={dark} setDark={setDark} />
         <Outlet context={{ dark, setDark }} />
+        <Footer dark={dark} />
       </div>
     </motion.div>
   );
