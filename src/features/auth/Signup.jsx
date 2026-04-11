@@ -12,10 +12,12 @@ import ApplicationSubmitted from "./ApplicationSubmitted";
 import useAuth from "../../contexts/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useOutletContext } from "react-router-dom";
+
 
 export default function CreateOrganizationForm() {
-  const { dark } = useOutletContext();
+  const [dark, setDark] = useState(() => {
+    return JSON.parse(localStorage.getItem("isDark") ?? false);
+  });
   const [formData, setFormData] = useState({
     abbreviation: "",
     organizationName: "",

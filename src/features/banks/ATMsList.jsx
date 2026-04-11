@@ -1,9 +1,8 @@
 import { useState, useMemo } from "react";
-import SortDropdown from "./component/SortDropdown";
+import SearchBar from "../../ui/SearchBar";
 import ATMCard from "./component/ATMCard";
-import DistanceSlider from "./component/DistanceSlider";
 import { useOutletContext } from "react-router-dom";
-
+import {LocationPermissionModal} from "../../ui/LocationPermissionModal";
 const ATMS = [
   {
     id: 1,
@@ -43,22 +42,29 @@ const ATMS = [
   },
 ];
 
+const MAX_DISTANCE = 2000;
+
 export default function ATMList({ bankName = "National Bank of Egypt" }) {
-  const [distance, setDistance] = useState(2000);
-  const [sort, setSort] = useState("nearest");
+  const [searchName, setSearchName]   = useState("");
+  const [maxDistance, setMaxDistance] = useState(MAX_DISTANCE);
+  const [sortOrder, setSortOrder]     = useState("asc");
   const { dark } = useOutletContext();
 
-  const pageBg = dark ? "bg-gray-950" : "bg-gray-50";
-  const textColor = dark ? "text-white" : "text-gray-900";
-  const subText = dark ? "text-gray-400" : "text-gray-500";
+  const pageBg   = dark ? "bg-gray-950" : "bg-gray-50";
+  const textColor = dark ? "text-white"  : "text-gray-900";
+  const subText   = dark ? "text-gray-400" : "text-gray-500";
 
   const filtered = useMemo(() => {
-    const list = ATMS.filter((a) => a.distanceM <= distance);
-    if (sort === "nearest")  return [...list].sort((a, b) => a.distanceM - b.distanceM);
-    if (sort === "farthest") return [...list].sort((a, b) => b.distanceM - a.distanceM);
-    if (sort === "name")     return [...list].sort((a, b) => a.name.localeCompare(b.name));
+    let list = ATMS.filter((a) => {
+      const withinDistance = a.distanceM <= maxDistance;
+      const matchesName    = a.name.toLowerCase().includes(searchName.toLowerCase());
+      return withinDistance && matchesName;
+    });
+
+    if (sortOrder === "asc")  return list.sort((a, b) => a.distanceM - b.distanceM);
+    if (sortOrder === "desc") return list.sort((a, b) => b.distanceM - a.distanceM);
     return list;
-  }, [distance, sort]);
+  }, [maxDistance, searchName, sortOrder]);
 
   return (
     <div className={`min-h-screen ${pageBg} px-4 py-10`}>
@@ -72,21 +78,17 @@ export default function ATMList({ bankName = "National Bank of Egypt" }) {
           </h1>
         </div>
 
-        {/* Filter Bar */}
-        <div className={`rounded-2xl border shadow-sm p-5 flex items-end justify-between gap-4 ${
-          dark
-            ? "bg-gray-900 border-gray-700"
-            : "bg-white border-slate-200"
-        }`}>
-          <DistanceSlider
-            value={distance}
-            min={100}
-            max={2000}
-            onChange={setDistance}
-            dark={dark}
-          />
-          <SortDropdown value={sort} onChange={setSort} dark={dark} />
-        </div>
+        {/* Search Bar */}
+        <SearchBar
+          dark={dark}
+          searchName={searchName}
+          setSearchName={setSearchName}
+          maxDistance={maxDistance}
+          setMaxDistance={setMaxDistance}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          maxPossibleDistance={MAX_DISTANCE}
+        />
 
         {filtered.length > 0 ? (
           filtered.map((atm) => (
@@ -94,7 +96,7 @@ export default function ATMList({ bankName = "National Bank of Egypt" }) {
           ))
         ) : (
           <div className={`text-center py-20 text-sm ${subText}`}>
-            No ATMs found within {distance}m.
+            No ATMs found within {maxDistance}m.
           </div>
         )}
 

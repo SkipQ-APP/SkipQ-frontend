@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { Building2, CheckCircle2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
 
 export default function RegistrationGuidelines({ onProceed }) {
-  const { dark } = useOutletContext();
 
   const prerequisites = [
     "Organization must be dealing with high traffic",
@@ -30,6 +29,9 @@ export default function RegistrationGuidelines({ onProceed }) {
       transition: { duration: 0.5, ease: "easeOut" },
     },
   };
+  const [dark, setDark] = useState(() => {
+      return JSON.parse(localStorage.getItem("isDark") ?? false);
+    });
 
   return (
     <div

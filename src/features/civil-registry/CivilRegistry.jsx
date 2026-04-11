@@ -2,7 +2,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "../../ui/SearchBar";
 import BranchList from "./components/BranchList";
 import Pagination from "../../ui/Pagination";
 import LocationPermissionModal from "../../ui/LocationPermissionModal";
