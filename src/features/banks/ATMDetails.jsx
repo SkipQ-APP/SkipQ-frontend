@@ -61,7 +61,7 @@ function WithdrawForm({ onSubmit, dark }) {
   const [showAmt, setShowAmt] = useState(false);
 
   return (
-    <div className={`rounded-2xl border shadow-sm p-6 mt-12 ${
+    <div className={`w-full rounded-2xl border shadow-sm p-6 mt-12 ${
       dark
         ? "bg-gray-900 border-gray-700"
         : "bg-white border-gray-200"
@@ -160,19 +160,15 @@ export default function ATMDetails({ atm = ATM_DATA }) {
         <div className="flex flex-col lg:flex-row gap-5">
 
           {/* Left column */}
-          <div className="flex-1">
-            <div className="relative">
-              <BranchMap
-                location={{ latitude: ATM_DATA.latitude, longitude: ATM_DATA.longitude }}
-                dark={dark}
-              />
-              <div className="relative -mt-6 mx-4 z-[1001]">
-                <WithdrawForm
-                  onSubmit={(amt) => alert(`Withdrawing ${amt} EGP`)}
-                  dark={dark}
-                />
-              </div>
-            </div>
+          <div className="flex-1 flex flex-col">
+            <BranchMap
+              location={{ latitude: ATM_DATA.latitude, longitude: ATM_DATA.longitude }}
+              dark={dark}
+            />
+            <WithdrawForm
+              onSubmit={(amt) => alert(`Withdrawing ${amt} EGP`)}
+              dark={dark}
+            />
           </div>
 
           {/* Right column */}

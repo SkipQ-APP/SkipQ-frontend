@@ -35,11 +35,11 @@ function SearchBar({
     : "bg-gray-50 text-gray-600 border-gray-300 hover:border-[rgb(65,15,199)] hover:text-[rgb(65,15,199)]";
 
   // Format distance label nicely
-  const formatDistance = (km) => {
-    if (km >= maxPossibleDistance) return "Any distance";
-    if (km >= 1000) return `${(km / 1000).toFixed(0)}k km`;
-    return `${km} km`;
-  };
+ const formatDistance = (m) => {
+  if (m >= maxPossibleDistance) return "Any distance";
+  if (m >= 1000) return `${(m / 1000).toFixed(1)}km`;
+  return `${m}m`;
+};
 
   return (
     <motion.div
