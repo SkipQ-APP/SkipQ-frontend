@@ -25,11 +25,12 @@ function BankCard({ bank, onClick, dark }) {
                         group-hover:bg-[rgb(65,15,199)]
                         transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 overflow-hidden"
         >
-          <img
-            src={`/images/${bank.org_picture}`}
-            alt={bank.org_name}
-            className="w-full h-full object-cover bg-white rounded-md p-1 transition-all duration-300 group-hover:scale-110"
-          />
+  <img
+  src={`/images/${bank.org_picture}`}
+  alt={bank.org_name}
+  onError={(e) => console.log("Failed src:", e.target.src)}
+  className="w-full h-full object-contain"
+/>
         </div>
 
         {/* Info */}

@@ -47,13 +47,13 @@ export default function Navbar({ dark, setDark }) {
           <button
             type="button"
             style={{ backgroundColor: "rgb(65, 15, 199)" }}
-            className="text-white rounded-xl border border-transparent shadow-xs font-medium text-sm px-4 py-2.5 "
+            className="text-white rounded-xl border border-transparent shadow-xs font-medium text-sm px-4 py-2.5"
           >
-            <img
-              src="/public/images/whiteLogo.png"
-              alt="Connection Error"
-              className="w-full w-[50px]"
-            />
+          <img
+            src="/images/whiteLogo.png"
+            alt="SkipQ"
+            className="w-[50px] h-auto"
+          />
           </button>
           <h1
             className="text-2xl font-bold"
