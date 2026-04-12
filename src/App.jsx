@@ -16,13 +16,13 @@ import ScrollToTop from "./ui/ScrollToTop";
 
 // Info pages
 // import HowItWorks from "./Info/HowItWorks";
-import Pricing from "./Info/Pricing";
-import FAQ from "./Info/FAQ";
-import AboutUs from "./Info/AboutUs";
-import Contact from "./Info/Contact";
-import PrivacyPolicy from "./Info/PrivacyPolicy";
-import TermsOfService from "./Info/TermsOfService";
 import HowItWorks from "./info/HowItWorks";
+import Pricing from "./info/Pricing";
+import FAQ from "./info/FAQ";
+import AboutUs from "./info/AboutUs";
+import Contact from "./info/Contact";
+import PrivacyPolicy from "./info/PrivacyPolicy";
+import TermsOfService from "./info/TermsOfService";
 
 function App() {
   return (
