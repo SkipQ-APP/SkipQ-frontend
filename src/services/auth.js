@@ -17,6 +17,17 @@ export const signupRequest = async (formData) => {
     throw error.response ? error.response.data : new Error("Network error");
   }
 };
+export const getMeRequest = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_BASE_URL}/api/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : new Error("Network error");
+  }
+};
 
 export const logout = () => {
   localStorage.removeItem("token");
