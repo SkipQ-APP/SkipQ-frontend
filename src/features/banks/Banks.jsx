@@ -1,10 +1,10 @@
 import { useState } from "react";
 import BankCard from "./component/BankCard";
 import { useOutletContext } from "react-router-dom";
-import banksData from "../../data/banks.json";
+import allData from "../../../data/data.json";
 
 function Banks() {
-  const [banks] = useState(banksData);
+  const [banks] = useState(allData.organization);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
   const { dark } = useOutletContext();
@@ -20,8 +20,6 @@ function Banks() {
   return (
     <div className={`min-h-screen ${pageBg} px-4 py-12`}>
       <div className="w-[90%] mx-auto">
-
-        {/* Header */}
         <div className="mb-8">
           <h1 className={`text-3xl font-bold tracking-tight ${textColor}`}>
             Select Your Bank
@@ -31,7 +29,6 @@ function Banks() {
           </p>
         </div>
 
-        {/* Search */}
         <div className="relative mb-8">
           <span className={`absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none ${
             dark ? "text-gray-600" : "text-slate-300"
@@ -54,7 +51,6 @@ function Banks() {
           />
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.length > 0 ? (
             filtered.map((bank) => (
@@ -68,7 +64,6 @@ function Banks() {
         </div>
       </div>
 
-      {/* Toast */}
       <div
         className={`fixed bottom-7 left-1/2 -translate-x-1/2 text-sm font-medium
                     px-5 py-3 rounded-full shadow-xl whitespace-nowrap z-50
