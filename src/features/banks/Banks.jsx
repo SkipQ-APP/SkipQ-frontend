@@ -1,28 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BankCard from "./component/BankCard";
 import { useOutletContext } from "react-router-dom";
+import banksData from "../../data/banks.json";
 
 function Banks() {
-  const [banks, setBanks] = useState([]);
+  const [banks] = useState(banksData);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
   const { dark } = useOutletContext();
-  useEffect(() => {
-    const fetchBanks = async () => {
-      const response = await fetch("http://localhost:8000/organization");
-      const data = await response.json();
-      console.log(data);
-      setBanks(data);
-    };
-    fetchBanks();
-  }, []);
 
-  const pageBg    = dark ? "bg-gray-950"  : "bg-gray-50";
-  const textColor = dark ? "text-white"   : "text-slate-900";
+  const pageBg    = dark ? "bg-gray-950"   : "bg-gray-50";
+  const textColor = dark ? "text-white"    : "text-slate-900";
   const subText   = dark ? "text-gray-500" : "text-slate-400";
 
   const filtered = banks.filter((b) =>
-    (b.name ?? "").toLowerCase().includes(search.toLowerCase())
+    (b.org_name ?? "").toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -66,7 +58,7 @@ function Banks() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.length > 0 ? (
             filtered.map((bank) => (
-              <BankCard key={bank.id} bank={bank} onClick={setSelected} dark={dark} />
+              <BankCard key={bank.org_id} bank={bank} onClick={setSelected} dark={dark} />
             ))
           ) : (
             <div className={`col-span-full text-center py-20 text-sm ${subText}`}>
@@ -84,7 +76,7 @@ function Banks() {
                     ${dark ? "bg-gray-800 text-white" : "bg-slate-900 text-white"}
                     ${selected ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"}`}
       >
-        {selected && `✓ Selected: ${selected.name}`}
+        {selected && `✓ Selected: ${selected.org_name}`}
       </div>
     </div>
   );
