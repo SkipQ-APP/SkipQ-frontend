@@ -149,11 +149,7 @@ export default function ATMDetails({ atm = ATM_DATA }) {
 
         {/* Header */}
         <div className="flex items-start gap-3 mb-8">
-          <button className="mt-1 text-slate-400 hover:text-[rgb(65,15,199)] transition-colors">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+          
           <div>
             <h1 className={`text-2xl font-bold ${textColor}`}>{atm.name}</h1>
             <p className={`text-sm ${subText} mt-0.5`}>{atm.bankName}</p>

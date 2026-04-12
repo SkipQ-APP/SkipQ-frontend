@@ -57,7 +57,7 @@ export default function Navbar({ dark, setDark }) {
               color: dark ? themesMAP["text-light"] : themesMAP["text-dark"],
             }}
           >
-            Skip Q
+            SkipQ
           </h1>
         </div>
 

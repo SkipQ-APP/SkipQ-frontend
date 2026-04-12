@@ -37,15 +37,7 @@ export default function Services({ dark }) {
       //   description_ar: "خدمات الأحوال المدنية والوثائق الرسمية",
       org_description: "Civil status services and official documents",
     },
-    {
-      service_id: 8,
-      //   name_ar: "الأحوال المدنية",
-      org_name: "Lash org",
-      type: "lash",
-      org_image: "/service_images/Lash_company.png",
-      //   description_ar: "خدمات الأحوال المدنية والوثائق الرسمية",
-      org_description: "Lash company for software Solutions",
-    },
+    
   ];
   //test animation effect
   const cardVariants = {

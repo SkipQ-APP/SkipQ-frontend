@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import SearchBar from "../../ui/SearchBar";
 import ATMCard from "./component/ATMCard";
 import { useOutletContext } from "react-router-dom";
-import {LocationPermissionModal} from "../../ui/LocationPermissionModal";
+// import {LocationPermissionModal} from "../../ui/LocationPermissionModal";
 const ATMS = [
   {
     id: 1,
