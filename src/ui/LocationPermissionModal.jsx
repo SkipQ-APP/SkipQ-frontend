@@ -96,18 +96,7 @@ function LocationPermissionModal({
                     Allow Location Access
                   </motion.button>
 
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={onSkip}
-                    className={`w-full py-2.5 rounded-xl text-sm font-semibold border transition
-                      ${
-                        dark
-                          ? "border-gray-700 text-gray-300 hover:bg-gray-800"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
-                      }`}
-                  >
-                    Skip for now
-                  </motion.button>
+                  
                 </div>
               </>
             )}

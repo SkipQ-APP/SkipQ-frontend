@@ -1,5 +1,3 @@
-
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import {
   faLocationDot,
   faArrowUpWideShort,
@@ -10,8 +8,6 @@ import { motion } from "framer-motion";
 
 function SearchBar({
   dark,
-  searchName,
-  setSearchName,
   maxDistance,
   setMaxDistance,
   sortOrder,
@@ -22,9 +18,6 @@ function SearchBar({
     ? "bg-gray-900 border-gray-700"
     : "bg-white border-gray-200";
   const subText = dark ? "text-gray-400" : "text-gray-500";
-  const inputBg = dark
-    ? "bg-gray-800 border-gray-600 text-white placeholder-gray-500"
-    : "bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-400";
 
   const btnBase =
     "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all duration-200";
@@ -34,12 +27,11 @@ function SearchBar({
     ? "bg-gray-800 text-gray-300 border-gray-600 hover:border-[rgb(65,15,199)] hover:text-[rgb(65,15,199)]"
     : "bg-gray-50 text-gray-600 border-gray-300 hover:border-[rgb(65,15,199)] hover:text-[rgb(65,15,199)]";
 
-  // Format distance label nicely
- const formatDistance = (m) => {
-  if (m >= maxPossibleDistance) return "Any distance";
-  if (m >= 1000) return `${(m / 1000).toFixed(1)}km`;
-  return `${m}m`;
-};
+  const formatDistance = (m) => {
+    if (m >= maxPossibleDistance) return "Any distance";
+    if (m >= 1000) return `${(m / 1000).toFixed(1)}km`;
+    return `${m}m`;
+  };
 
   return (
     <motion.div
@@ -49,32 +41,7 @@ function SearchBar({
       className={`rounded-2xl border p-5 mb-4 shadow-sm ${cardBg}`}
     >
       <div className="flex flex-col md:flex-row gap-6 items-center">
-        {/* Search by Name */}
-        <div className="flex-1 w-full">
-          <label
-            className={`block text-xs font-semibold uppercase tracking-widest mb-2 ${subText}`}
-          >
-            <FontAwesomeIcon
-              icon={faSearch}
-              size="lg"
-              style={{ color: dark ? "white" : "rgb(65,15,199)" }}
-            />{" "}
-            Search by Name
-          </label>
-          <input
-            type="text"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
-            placeholder="e.g. New York Main Branch..."
-            className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[rgb(65,15,199)] transition ${inputBg}`}
-          />
-        </div>
-
-        <div
-          className={`hidden md:block w-px h-12 ${dark ? "bg-gray-700" : "bg-gray-200"}`}
-        />
-
-        {/* Max Distance */}
+        {/* Max Distance Range */}
         <div className="flex-1 w-full">
           <label
             className={`block text-xs font-semibold uppercase tracking-widest mb-2 ${subText}`}
@@ -103,31 +70,36 @@ function SearchBar({
             <span>Any</span>
           </div>
         </div>
-      </div>
 
-      {/* Sort Row */}
-      <div
-        className={`mt-4 pt-4 border-t ${dark ? "border-gray-700" : "border-gray-100"} flex items-center gap-3 flex-wrap`}
-      >
-        <span
-          className={`text-xs font-semibold uppercase tracking-widest ${subText}`}
-        >
-          Sort by Distance:
-        </span>
-        <button
-          onClick={() => setSortOrder("asc")}
-          className={`${btnBase} ${sortOrder === "asc" ? btnActive : btnInactive}`}
-        >
-          <FontAwesomeIcon icon={faArrowUpWideShort} />
-          Nearest First
-        </button>
-        <button
-          onClick={() => setSortOrder("desc")}
-          className={`${btnBase} ${sortOrder === "desc" ? btnActive : btnInactive}`}
-        >
-          <FontAwesomeIcon icon={faArrowDownWideShort} />
-          Farthest First
-        </button>
+        {/* Vertical Divider */}
+        <div
+          className={`hidden md:block w-px self-stretch ${dark ? "bg-gray-700" : "bg-gray-200"}`}
+        />
+
+        {/* Sort Buttons */}
+        <div className="flex-1 w-full">
+          <span
+            className={`block text-xs font-semibold uppercase tracking-widest mb-2 ${subText}`}
+          >
+            Sort by Distance:
+          </span>
+          <div className="flex items-center gap-3 flex-wrap">
+            <button
+              onClick={() => setSortOrder("asc")}
+              className={`${btnBase} ${sortOrder === "asc" ? btnActive : btnInactive}`}
+            >
+              <FontAwesomeIcon icon={faArrowUpWideShort} />
+              Nearest First
+            </button>
+            <button
+              onClick={() => setSortOrder("desc")}
+              className={`${btnBase} ${sortOrder === "desc" ? btnActive : btnInactive}`}
+            >
+              <FontAwesomeIcon icon={faArrowDownWideShort} />
+              Farthest First
+            </button>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
