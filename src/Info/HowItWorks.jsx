@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMoon,
-  faSun,
   faLocationDot,
   faBuilding,
   faListCheck,
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import themesMAP from "../../themes/themes";
+import Navbar from "../ui/naveBar"; // 👈 same navbar style as FAQ
 
 const steps = [
   {
@@ -27,7 +26,7 @@ const steps = [
     title: "Pick a Service",
     description:
       "Browse available branches. See real-time status: open or closed, which counters are active, and how many people are waiting at each one.",
-    color: "#6d28d9",
+    color: "#410fc7",
   },
   {
     number: "03",
@@ -35,7 +34,7 @@ const steps = [
     title: "Check Queue & Services",
     description:
       "Dive into each branch. View live queue counts per service, ATM cash availability, max withdrawal limits, and operational status.",
-    color: "#7c3aed",
+    color: "#410fc7",
   },
   {
     number: "04",
@@ -68,66 +67,15 @@ export default function HowItWorks() {
     return () => window.removeEventListener("storage", sync);
   }, []);
 
-  const bg = dark ? "#0f172a" : "#f4f5f7";
+  const bg = dark ? themesMAP["light-main-bg"] : themesMAP["dark-main-bg"];
   const text = dark ? themesMAP["text-light"] : themesMAP["text-dark"];
   const cardBg = dark ? "#1e293b" : "#ffffff";
   const muted = dark ? "#94a3b8" : "#64748b";
 
   return (
     <div style={{ backgroundColor: bg, minHeight: "100vh" }}>
-      {/* Navbar */}
-      <header
-        // style={{ backgroundColor: bg }}
-        className="sticky top-0 z-50 border-b border-opacity-10"
-        style={{
-          backgroundColor: bg,
-          borderBottom: `1px solid ${dark ? "#1e293b" : "#e2e8f0"}`,
-        }}
-      >
-        <nav className="flex items-center justify-between p-4 lg:max-w-7xl lg:mx-auto px-4 sm:px-6 lg:px-8">
-          <NavLink to="/" className="flex gap-3 items-baseline">
-            {/* Logo */}
-            <div className="flex lg:flex-1 gap-3 items-center">
-              <button
-                type="button"
-                style={{ backgroundColor: "rgb(65, 15, 199)" }}
-                className="text-white rounded-xl border border-transparent shadow-xs font-medium text-sm px-4 py-2.5 "
-              >
-                <img
-                  src="/public/images/whiteLogo.png"
-                  alt="Connection Error"
-                  className="w-full w-[50px]"
-                />
-              </button>
-              <h1
-                className="text-2xl font-bold"
-                style={{
-                  color: dark
-                    ? themesMAP["text-light"]
-                    : themesMAP["text-dark"],
-                }}
-              >
-                SkipQ
-              </h1>
-            </div>
-          </NavLink>
-          <button
-            onClick={() =>
-              setDark((prev) => {
-                const next = !prev;
-                localStorage.setItem("isDark", JSON.stringify(next));
-                return next;
-              })
-            }
-          >
-            <FontAwesomeIcon
-              icon={dark ? faSun : faMoon}
-              size="lg"
-              style={{ color: text }}
-            />
-          </button>
-        </nav>
-      </header>
+      {/* Shared Navbar */}
+      <Navbar dark={dark} setDark={setDark} />
 
       {/* Hero */}
       <section className="lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
@@ -145,13 +93,14 @@ export default function HowItWorks() {
           >
             How It Works
           </span>
+
           <h1
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight"
             style={{ color: text }}
           >
-            Skip the line,{" "}
-            <span style={{ color: "#410fc7" }}>not the service.</span>
+            Skip the line, <span style={{ color: "#410fc7" }}>not the service.</span>
           </h1>
+
           <p className="text-lg max-w-2xl mx-auto" style={{ color: muted }}>
             SkipQ gives you live queue data for every branch near you — so you
             walk in at the right time, every time.
@@ -185,23 +134,26 @@ export default function HowItWorks() {
                 >
                   <FontAwesomeIcon
                     icon={step.icon}
-                    style={{ color: step.color }}
+                    style={{ color: "#410fc7" }}
                     size="lg"
                   />
                 </div>
+
                 <div>
                   <span
                     className="text-5xl font-black opacity-10 absolute right-6 top-4"
-                    style={{ color: step.color }}
+                    style={{ color: "#410fc7" }}
                   >
                     {step.number}
                   </span>
+
                   <h3
                     className="text-xl font-bold mb-2"
                     style={{ color: text }}
                   >
                     {step.title}
                   </h3>
+
                   <p style={{ color: muted }}>{step.description}</p>
                 </div>
               </div>
@@ -221,9 +173,10 @@ export default function HowItWorks() {
           <h2 className="text-3xl font-bold mb-4" style={{ color: text }}>
             Ready to skip the queue?
           </h2>
+
           <NavLink to="/">
             <button
-              style={{ backgroundColor: "rgb(65, 15, 199)" }}
+              style={{ backgroundColor: "#410fc7" }}
               className="text-white rounded-xl font-semibold px-8 py-3 mt-2 hover:opacity-90 transition-opacity"
             >
               Get Started Free

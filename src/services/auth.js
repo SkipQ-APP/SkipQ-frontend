@@ -11,7 +11,7 @@ export const loginRequest = async (email, password) => {
 
 export const signupRequest = async (formData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, formData);
+    const response = await axios.post(`${API_BASE_URL}/api/organizations/signup`, formData);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : new Error("Network error");
