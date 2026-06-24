@@ -13,7 +13,7 @@ import RegesterationGuidelines from "./features/auth/RegesterationGuidelines";
 import PageNotFound from "./ui/PageNotFound";
 import BranchDetails from "./features/civil-registry/BranchDetails";
 import ScrollToTop from "./ui/ScrollToTop";
-
+import SetPassword from "./features/auth/SetPassword";
 // Info pages
 // import HowItWorks from "./Info/HowItWorks";
 import HowItWorks from "./info/HowItWorks";
@@ -43,6 +43,7 @@ function App() {
           {/* Auth */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/setPassword/:token" element={<SetPassword />} />
           <Route
             path="/registration-guidelines"
             element={<RegesterationGuidelines />}
