@@ -14,10 +14,10 @@ import PageNotFound from "./ui/PageNotFound";
 import BranchDetails from "./features/civil-registry/BranchDetails";
 import ScrollToTop from "./ui/ScrollToTop";
 import SetPassword from "./features/auth/SetPassword";
-import DeveloperDashboard from "./features/dashboards/DeveloperDashboard";
-import SignupRequests from "./features/dashboards/SignupRequests";
-import Team from "./features/dashboards/Team";
-import Logs from "./features/dashboards/Logs";
+import DeveloperDashboard from "./features/dashboards/developer-dashboard/DeveloperDashboard";
+import SignupRequests from "./features/dashboards/developer-dashboard/SignupRequests";
+import Team from "./features/dashboards/developer-dashboard/Team";
+import Logs from "./features/dashboards/developer-dashboard/Logs";
 // Info pages
 // import HowItWorks from "./Info/HowItWorks";
 import HowItWorks from "./info/HowItWorks";

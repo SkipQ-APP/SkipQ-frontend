@@ -2,7 +2,7 @@
 
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 const logsData = [
   {

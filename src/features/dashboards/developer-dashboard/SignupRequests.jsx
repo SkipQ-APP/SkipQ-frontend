@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 import DetailsDrawer from "./DetailsDrawer";
 import StatusBadge from "./StatusBadge";
 

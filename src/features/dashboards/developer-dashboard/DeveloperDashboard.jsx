@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { Moon, Sun, Menu } from "lucide-react";
 import AdminSidebar from "./AdminSidebar";
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 export default function DeveloperDashboard() {
   const [dark, setDark] = useState(() =>

@@ -3,7 +3,7 @@
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 function StatusBadge({ status }) {
   const styles = {

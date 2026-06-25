@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FileText, Users, LogOut, X } from "lucide-react";
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 
 const NAV_ITEMS = [
   { key: "signup-requests", label: "Signup Requests", icon: FileText, path: "/admin/signup-requests" },

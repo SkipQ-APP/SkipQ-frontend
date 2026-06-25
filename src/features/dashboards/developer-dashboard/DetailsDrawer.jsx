@@ -19,7 +19,7 @@ import {
   Menu,
 } from "lucide-react";
 
-import themesMAP from "../../../themes/themes";
+import themesMAP from "../../../../themes/themes";
 import { motion, AnimatePresence } from "framer-motion";
 import StatusBadge from "./StatusBadge";
 function DetailsDrawer({ item, onClose, dark }) {
