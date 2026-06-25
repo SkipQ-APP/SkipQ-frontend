@@ -18,7 +18,7 @@ import DeveloperDashboard from "./features/dashboards/developer-dashboard/Develo
 import SignupRequests from "./features/dashboards/developer-dashboard/SignupRequests";
 import Team from "./features/dashboards/developer-dashboard/Team";
 import Logs from "./features/dashboards/developer-dashboard/Logs";
-import ProtectedRoute from "./features/dashboards/developer-dashboard/ProtectedRoute";
+// import ProtectedRoute from "./features/dashboards/developer-dashboard/ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 // Info pages
 // import HowItWorks from "./Info/HowItWorks";
@@ -56,14 +56,14 @@ function App() {
             path="/registration-guidelines"
             element={<RegesterationGuidelines />}
           />
-          <Route element={<ProtectedRoute />}>
+          {/* <Route element={<ProtectedRoute />}> */}
             <Route path="/devDashboard" element={<DeveloperDashboard />}>
               <Route index element={<Navigate to="signup-requests" replace />} />
               <Route path="signup-requests" element={<SignupRequests />} />
               <Route path="team"            element={<Team />} />
               <Route path="logs"            element={<Logs />} />
             </Route>
-          </Route>
+          {/* </Route> */}
           {/* Info pages (standalone with their own minimal navbar) */}
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/pricing" element={<Pricing />} />
